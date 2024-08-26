@@ -7,6 +7,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   isLoading: boolean;
   user: User | null;
+  storeToken: (token: string) => void;
   authenticateUser: () => void;
   logOutUser: () => void;
 }
@@ -24,6 +25,11 @@ const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps): JSX.Elemen
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
+ 
+  const storeToken = (token: string) => {
+    localStorage.setItem("authToken", token);
+    console.log("Token stored:", token);
+  };
 
   // Function to authenticate the user
   const authenticateUser = async () => {
@@ -70,6 +76,7 @@ const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps): JSX.Elemen
         isLoggedIn,
         isLoading,
         user,
+        storeToken,
         authenticateUser,
         logOutUser,
       }}
@@ -91,4 +98,5 @@ const useAuth = () => {
 };
 
 // Export the AuthProviderWrapper, AuthContext, and useAuth
-export { AuthProviderWrapper, useAuth };
+export { AuthProviderWrapper, AuthContext, useAuth };
+export type { AuthContextType };

@@ -10,7 +10,7 @@ interface LoginRequestBody {
 interface SignupRequestBody {
   email: string;
   password: string;
-  username: string;
+  name: string;
 }
 
 class AuthService {
@@ -22,7 +22,7 @@ class AuthService {
     });
 
     this.api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-      const storedToken = localStorage.getItem("authToken");
+      const storedToken = localStorage.getItem("authToken");  
 
       if (storedToken) {
         config.headers.set('Authorization', `Bearer ${storedToken}`);
@@ -32,6 +32,7 @@ class AuthService {
     });
   }
 
+  
   login = (requestBody: LoginRequestBody): Promise<AxiosResponse> => {
     return this.api.post("/auth/login", requestBody);
   };
