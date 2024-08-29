@@ -5,17 +5,17 @@ import SignupPage from "./Pages/SignUpPage/SignUpPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-
+import ShoppingListPage from "./Pages/ShoppingListPage/ShoppingListPage";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <>
-      <div className="App flex flex-col items-center justify-center min-h-screen">
+      <div className="App flex flex-col items-center justify-center min-h-screen max-w-xl mx-auto">
         <Navbar />
         <Routes>
           <Route path="*" element={<Navbar />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<IsPrivate><HomePage /></IsPrivate>} />
 
           <Route
             path="/profile"
@@ -40,6 +40,15 @@ function App() {
               <IsAnon>
                 <LoginPage />
               </IsAnon>
+            }
+          />
+
+          <Route
+            path="/shopping-list/:shoppingListId"
+            element={
+              <IsPrivate>
+                <ShoppingListPage />
+              </IsPrivate>
             }
           />
         </Routes>
