@@ -67,6 +67,7 @@ const HomePage: React.FC = () => {
         const newList = response.data;
         setShoppingLists([...shoppingLists, newList]);
         setNewListName(""); // Clear the input field
+        setError(null); // Clear any existing error
         navigate(`/shopping-list/${newList.id}`); // Navigate to the new list's page
       } else {
         console.error("Failed to create new shopping list");
@@ -113,6 +114,7 @@ const HomePage: React.FC = () => {
             Create New List
           </button>
         </div>
+        {error && <p className="text-red-500">{error}</p>}
         <p>Don't have an account?</p>
         <button className="btn btn-secondary">
           <Link to="/signup">Sign up here</Link>
