@@ -298,7 +298,7 @@ const ShoppingListPage: React.FC = () => {
           <h3>Shared with:</h3>
           <div>
             {sharedUsers.map((user) => (
-              <label key={user.id}>{user.name}</label>
+              <div className= "badge badge-outline p-3 mx-1" key={user.id}>{user.name}</div>
             ))}
           </div>
         </div>
