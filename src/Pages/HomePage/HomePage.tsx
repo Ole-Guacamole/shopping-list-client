@@ -9,6 +9,7 @@ const HomePage: React.FC = () => {
   const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>([]);
   const [sharedShoppingLists, setSharedShoppingLists] = useState<ShoppingList[]>([]);
   const [newListName, setNewListName] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,6 +47,11 @@ const HomePage: React.FC = () => {
 
   const handleAddList = async () => {
     if (!authContext || !authContext.user) return;
+
+    if (!newListName.trim()) {
+      setError("List name is required.");
+      return;
+    }
 
     const ownerId = authContext.user.id;
     try {
