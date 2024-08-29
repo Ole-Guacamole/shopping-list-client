@@ -115,10 +115,6 @@ const HomePage: React.FC = () => {
           </button>
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        <p>Don't have an account?</p>
-        <button className="btn btn-secondary">
-          <Link to="/signup">Sign up here</Link>
-        </button>
       </div>
     </div>
   );
