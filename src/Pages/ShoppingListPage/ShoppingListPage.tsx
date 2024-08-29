@@ -25,9 +25,7 @@ const ShoppingListPage: React.FC = () => {
   const [newItem, setNewItem] = useState(""); // State for new item input
   const [users, setUsers] = useState<User[]>([]); // State for users
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null); // State for selected user
-  const [selectedUnshareUserId, setSelectedUnshareUserId] = useState<
-    string | null
-  >(null); // State for selected user to unshare
+  // const [selectedUnshareUserId, setSelectedUnshareUserId] = useState < string | null >(null); // State for selected user to unshare
   const [sharedUsers, setSharedUsers] = useState<User[]>([]); // State for shared users
   const [listToDelete, setListToDelete] = useState<string | null>(null); // State for list to delete
   const authContext = useContext(AuthContext); // Get AuthContext
@@ -151,14 +149,28 @@ const ShoppingListPage: React.FC = () => {
     }
   };
 
-  const handleUnshareShoppingList = async () => {
-    if (!selectedUnshareUserId) return;
+  // const handleUnshareShoppingList = async () => {
+  //   if (!selectedUnshareUserId) return;
 
+  //   try {
+  //     await axios.delete(
+  //       `${
+  //         import.meta.env.VITE_SERVER_URL
+  //       }/user-shopping-list-links/${selectedUnshareUserId}/${shoppingListId}`
+  //     );
+  //     console.log("Shopping list unshared successfully");
+
+  //     // Refetch users and shared users after unsharing the shopping list
+  //     fetchUsersAndSharedUsers();
+  //   } catch (error) {
+  //     console.error("Error unsharing shopping list:", error);
+  //   }
+  // };
+
+  const handleUnshareShoppingList = async (userId: string) => {
     try {
       await axios.delete(
-        `${
-          import.meta.env.VITE_SERVER_URL
-        }/user-shopping-list-links/${selectedUnshareUserId}/${shoppingListId}`
+        `${import.meta.env.VITE_SERVER_URL}/user-shopping-list-links/${userId}/${shoppingListId}`
       );
       console.log("Shopping list unshared successfully");
 
@@ -272,7 +284,7 @@ const ShoppingListPage: React.FC = () => {
           </button>
         </div>
 
-        <div className="join w-full my-2">
+        {/* <div className="join w-full my-2">
           <select
             className="select select-bordered select-secondary w-full join-item"
             onChange={(e) => setSelectedUnshareUserId(e.target.value)}
@@ -292,13 +304,21 @@ const ShoppingListPage: React.FC = () => {
           >
             UNSHARE LIST
           </button>
-        </div>
+        </div> */}
 
-        <div className="mt-4">
+        <div className="text-center">
           <h3>Shared with:</h3>
           <div>
             {sharedUsers.map((user) => (
-              <div className= "badge badge-outline p-3 mx-1" key={user.id}>{user.name}</div>
+              <button className="badge badge-outline py-4 mx-1" key={user.id}>
+                {user.name}
+                <button
+                  className="btn btn-xs btn-neutral btn-circle ml-2"
+                  onClick={() => handleUnshareShoppingList(user.id)}
+                >
+                  X
+                </button>
+              </button>
             ))}
           </div>
         </div>
