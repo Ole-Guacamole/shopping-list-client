@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+# Shopping List Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a client-side application for managing shopping lists. It allows users to create, share, and manage their shopping lists with ease.
 
-Currently, two official plugins are available:
+## Inhaltsverzeichnis
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Verwendung](#verwendung)
+- [Skripte](#skripte)
+- [Hauptkomponenten](#hauptkomponenten)
+- [Abhängigkeiten](#abhängigkeiten)
+- [Beitragende](#beitragende)
+- [Lizenz](#lizenz)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Anweisungen zur Installation des Projekts.
 
-- Configure the top-level `parserOptions` property like this:
+### Klonen Sie das Repository
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+git clone https://github.com/benutzername/shopping-list-client.git
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Wechseln Sie in das Projektverzeichnis
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+cd shopping-list-client
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Installieren Sie die Abhängigkeiten
+
+npm install
+
+## Verwendung
+
+# Starten Sie das Projekt
+
+npm start
+
+## Skripte
+
+Liste der verfügbaren npm-Skripte und deren Beschreibung.
+{
+"scripts": {
+"start": "Startet die Entwicklungsumgebung",
+"build": "Erstellt eine Produktionsversion der Anwendung",
+"test": "Führt die Tests aus"
+}
+}
+
+## Hauptkomponenten
+
+Navbar.tsx
+Die Navbar-Komponente bietet eine Navigationsleiste mit Links zu verschiedenen Seiten und einem Dropdown-Menü für Benutzeraktionen wie Login, Signup und Logout.
+
+SignupPage.tsx
+Die SignupPage-Komponente ermöglicht es neuen Benutzern, sich zu registrieren. Sie enthält ein Formular zur Eingabe von Name, E-Mail und Passwort.
+
+LoginPage.tsx
+Die LoginPage-Komponente ermöglicht es bestehenden Benutzern, sich anzumelden. Sie enthält ein Formular zur Eingabe von E-Mail und Passwort.
+
+AuthContext.tsx
+Der AuthContext verwaltet den Authentifizierungsstatus des Benutzers und bietet Funktionen zum Speichern von Tokens, Authentifizieren von Benutzern und Abmelden.
+
+ProfilePage.tsx
+Die ProfilePage-Komponente zeigt die Profildaten des angemeldeten Benutzers an, einschließlich Name, E-Mail und Erstellungsdatum.
+
+ShoppingListPage.tsx
+Die ShoppingListPage-Komponente ermöglicht es Benutzern, ihre Einkaufsliste anzuzeigen, Artikel hinzuzufügen, zu löschen und die Liste mit anderen Benutzern zu teilen.
+
+HomePage.tsx
+Die HomePage-Komponente zeigt die persönlichen und geteilten Einkaufslisten des Benutzers an und ermöglicht das Erstellen neuer Listen.
+
+ThemeSwitcher.tsx
+Die ThemeSwitcher-Komponente ermöglicht es Benutzern, zwischen verschiedenen Themen zu wechseln.
+
+Abhängigkeiten
+
+## Abhängigkeiten
+
+Liste der Hauptabhängigkeiten des Projekts.
+
+{
+"dependencies": {
+"axios": "^0.21.1",
+"react": "^17.0.2",
+"react-dom": "^17.0.2",
+"react-router-dom": "^5.2.0",
+"tailwindcss": "^2.2.19",
+"daisyui": "^1.14.0"
+}
+}
