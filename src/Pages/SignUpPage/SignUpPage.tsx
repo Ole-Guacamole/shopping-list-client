@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AxiosError } from "axios";
 
 
 function SignupPage() {
@@ -18,22 +19,22 @@ function SignupPage() {
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
-  const handleSignupSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSignupSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const requestBody = { email, password, name };
 
     setIsLoading(true);
-    
-    authService
-      .signup(requestBody)
-      .then((response) => {
-        console.log(response);
-        navigate("/login");
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
+
+    try {
+      const response = await authService.signup(requestBody);
+      console.log(response);
+      navigate("/login");
+    } catch (error: any) {
+      const errorDescription = error.response.data.message;
+      setErrorMessage(errorDescription);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
